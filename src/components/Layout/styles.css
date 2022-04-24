@@ -4,11 +4,15 @@
     grid-template-columns: 614px 293px;
     max-width: 957px;
     margin: 100px auto;
-    grid-gap: 50px;
+    grid-gap: 35px;
 }
 
 .first{
     grid-area: "firstColumn";
+}
+.second{
+    grid-area: "secondColumn";
+
 }
 .box-story{
     background: var(--background);
@@ -21,5 +25,6 @@
 }
 
 .suggestion-box{
-    grid-area: "secondColumn";
+    position: fixed;
+    max-width: 293px;
 }
