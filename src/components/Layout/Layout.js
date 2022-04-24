@@ -7,8 +7,8 @@ function Layout() {
     <Fragment>
       <div className='grid-main'>
         <div className='first'>
-          <div className='box'><Story /></div>
-          <div className='box'><Post /></div>
+          <div className='box-story'><Story /></div>
+          <div className='box-post'><Post /></div>
         </div>
           <div className='suggestion-box'>sugestion</div>
       </div>
