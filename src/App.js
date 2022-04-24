@@ -1,11 +1,12 @@
 import './styles/global.css'
-import {Header} from './components'
+import {Header, Layout} from './components'
+import { Fragment } from 'react';
 function App() {
   return (
-    <>
+    <Fragment>
     <Header />
-   <h1>Hello World</h1>
-    </>
+   <Layout />
+    </Fragment>
   );
 }
 
