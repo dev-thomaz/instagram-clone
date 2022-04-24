@@ -1,6 +1,32 @@
+
+   
+import { useEffect, useState } from 'react'
 import './styles.css';
 
 function Suggestion() {
+
+    const [suggestions, setSuggestions] = useState([])
+
+    const [limitUsers, setLimitUsers] = useState(5)
+
+    const slice = suggestions.slice(0, limitUsers)
+
+    useEffect(() => {
+        fetch(`https://api.github.com/users/dev-thomaz/followers`)
+        .then((response) => {
+            return response.json()
+        })
+        .then((result) => {
+            setSuggestions(result)
+        })
+
+        .catch((err) => {
+            throw new Error(err)
+        })
+
+    }, [])
+
+
   return (
     <div className='container-suggestion'>
       <div className='header-suggestion'>
@@ -24,54 +50,31 @@ function Suggestion() {
         <span>ver tudo</span>
       </div>
 
-      <div className='user-suggestion'>
-        <div className='infos-suggestion'>
-          <img
-            alt='usr profile'
-            src='https://t.ctcdn.com.br/6UDw9yrT86-hAsaXkUWU3nt9wBM=/400x400/smart/filters:format(webp)/i490767.jpeg'
-          />
+      <div className="user-suggestion" >
 
-          <div className='info-suggestion'>
-            <span>@markzuckenberg</span>
-            <p>seguido por steve.jobs</p>
-          </div>
-          <button className='follow'>seguir</button>
+{slice.map((suggestion, key) => (
+     <div className="infos-suggestion" key={key}>
+        <img src={`https://github.com/${suggestion.login}.png`} />
+
+        <div className="info-suggestion" >
+            <span>{suggestion.login}</span>
+            <p>Seguido por steve.jobs</p>
         </div>
-        <div className='infos-suggestion'>
-          <img
-            alt='usr profile'
-            src='https://www.cnnbrasil.com.br/wp-content/uploads/sites/12/2021/11/elon-musk.jpg?w=1200&h=1200&crop=1'
-          />
 
-          <div className='info-suggestion'>
-            <span>@musk-elon</span>
-            <p>seguido por bill.gates</p>
-          </div>
-          <button className='follow'>seguir</button>
-        </div>
-        <div className='infos-suggestion'>
-          <img
-            alt='usr profile'
-            src='https://programadoresbrasil.com.br/wp-content/uploads/2020/07/torvalds_in_nature-1024x738.jpg'
-          />
-
-          <div className='info-suggestion'>
-            <span>@linus_torvalds</span>
-            <p>seguido por steve.jobs</p>
-          </div>
-          <button className='follow'>seguir</button>
-        </div>
-      </div>
-      <footer className='footer-suggestion'>
-        <p>
-          Sobre &bull; Ajuda &bull; Imprensa &bull; API &bull; Carreiras &bull;
-          Privacidade &bull; Termos &bull; Localizações &bull; Principais contas
-          &bull; Hashtags &bull; idioma
-        </p>
-
-        <p>&copy; 2021 INSTAGRAM FROM META</p>
-      </footer>
+        <button className='follow' >Seguir</button>
     </div>
+))}
+
+
+</div>
+
+<footer className="footer-suggestion" >
+<p>Sobre &bull; Ajuda &bull; Imprensa &bull; API &bull; Carreiras &bull; Privacidade &bull; Termos &bull; Localizações &bull; Principais contas &bull; Hashtags &bull; idioma</p>
+
+<p>&copy; 2021 INSTAGRAM FROM META</p>
+
+</footer>
+</div>
   );
 }
 
